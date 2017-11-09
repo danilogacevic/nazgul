@@ -12,9 +12,9 @@
         
     }
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['create'])){
         
-        $username = trim($_POST['username']);
+        // $username = trim($_POST['username']);
         $password = trim($_POST['password']);
     
     
@@ -36,7 +36,19 @@
         }
         
         
-    } else {
+    } else if(isset($_POST['view'])) {
+
+
+
+
+
+
+
+
+
+    }
+
+    else {
         
         $username = "";
         $password = "";
@@ -69,7 +81,8 @@
         
         <div class="form-group">
            
-            <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+            <input type="submit" class="btn btn-primary" name="create" value="Create creature">
+            <input type="submit" class="btn btn-primary" name="view" value="View creatures">
             
         </div>
         

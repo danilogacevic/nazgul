@@ -6,6 +6,8 @@
 
 <?php 
     $creature = new Creature();
+    $crime = new Crime();
+    $note = new Note();
 
     if(isset($_POST['create'])){
 
@@ -17,14 +19,60 @@
             $creature->gender=$_POST['gender'];
             $creature->birth_place=$_POST['birth_place'];
             $creature->birth_date=$_POST['birth_date'];
-            $creature->carried_ring=$_POST['ever_carried_ring'];
-            $creature->enslaved=$_POST['enslaved_by_sauron'];
+            $creature->ever_carried_ring=$_POST['ever_carried_ring'];
+            $creature->enslaved_by_sauron=$_POST['enslaved_by_sauron'];
            
             $creature->create();
             // $session->message("The creature {$creature->name} has been created");
-            session_destroy();
-            redirect("index.php");
+            // session_destroy();
+            // redirect("index.php");
+            $creature_id = $database->the_insert_id();
+        }
 
+        if($crime) {
+
+            $mi = new MultipleIterator();
+            $mi->attachIterator(new ArrayIterator($_POST['crime_note']));
+            $mi->attachIterator(new ArrayIterator($_POST['crime_date']));
+            $mi->attachIterator(new ArrayIterator($_POST['punished_by_sauron']));
+
+            foreach ( $mi as $value ) {
+            list($_POST['crime_note'], $_POST['crime_date'], $_POST['punished_by_sauron']) = $value;
+
+
+            $crime->creature_id=$creature_id;
+            $crime->note = $_POST['crime_note'];
+            $crime->datum = $_POST['crime_date'];
+            $crime->punished = $_POST['punished_by_sauron'];
+            $crime->create();
+        }
+
+            
+             
+        }
+
+        if($note) {
+
+            $vi = new MultipleIterator();
+            $vi->attachIterator(new ArrayIterator($_POST['note_date']));
+            $vi->attachIterator(new ArrayIterator($_POST['note']));
+            
+            foreach ( $vi as $value ) {
+
+            list($_POST['note_date'], $_POST['note']) = $value;
+
+
+            $note->creature_id=$creature_id;
+            $note->datum = $_POST['note_date'];
+            $note->note = $_POST['note'];
+            
+           
+            $note->create();
+        }
+
+            
+             session_destroy();
+             redirect("index.php");
         }
 
 
@@ -113,41 +161,51 @@
 
                                 </div>
 
-                                <div >
+                                <div id="duplicater">
 
                                     <label for="crime_date">Crimes against Sauron </label>
 
-                                    <input type="date"  name="crime_date">
+                                    <input type="date"  name="crime_date[]">
 
-                                    <input type="textarea" class="" name="crime_note">
+                                    <input type="textarea" class="" name="crime_note[]">
                                 
-                                    <input type="checkbox" name="enslaved_by_sauron" value=""> Crime punished ?
+                                   
+                                    <select name="punished_by_sauron[]">
+                                      <option value="0">Not punished</option>
+                                      <option value="1">Punished</option>
+                                    </select>
+
+
 
                                 </div>
+                                <a  id="add_crime" href="javascript:void(0);">Add crime</a>
 
-                                <div >
+                                <div id="note">
 
                                     <label for="note_date">Notes </label>
 
-                                    <input type="date"  name="note_date">
+                                    <input type="date"  name="note_date[]">
 
-                                    <input type="textarea" class="" name="note">
+                                    <input type="textarea" class="" name="note[]">
                                 
                                     
 
                                 </div>
+                                <a  id="add_note" href="javascript:void(0);">Add note</a>
 
                                 <div >
 
                                     <input type="submit"  name="create" value="submit">
 
                                 </div>
+                                
 
                             </div>
 </form>
 
 
 <script>
+
 	function myFunction()
 {
   
@@ -180,6 +238,44 @@ function hey () {
 
 	document.getElementById('chose-place').style.display='none';
 }
+
+
+var i = 0;
+var original = document.getElementById('duplicater');
+var original_note = document.getElementById('note');
+
+function duplicate() {
+    var clone = original.cloneNode(true); // "deep" clone
+    clone.id = "duplicater" + ++i;
+    // or clone.id = ""; if the divs don't need an ID
+    // original.appendChild(clone);
+
+    insertAfter(clone,original);
+
+    
+}
+
+function duplicate_note() {
+    var clone = original_note.cloneNode(true); // "deep" clone
+    clone.id = "duplicater" + ++i;
+    // or clone.id = ""; if the divs don't need an ID
+    // original.appendChild(clone);
+
+    insertAfter(clone,original_note);
+
+    
+}
+
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+document.getElementById("add_crime").onclick = duplicate;
+document.getElementById("add_note").onclick = duplicate_note;
+
+
+
+
 
 
 

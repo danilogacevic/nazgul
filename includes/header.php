@@ -13,14 +13,14 @@
     <title>Blog Home - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<!--     <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Custom CSS -->
-    <link href="css/blog-home.css" rel="stylesheet">
+<!--     <link href="css/blog-home.css" rel="stylesheet"> -->
 
+<!-- 
 
-
-    <link rel="stylesheet" href="css/styles.css" class="">
+    <link rel="stylesheet" href="css/styles.css" class=""> -->
 
 </head>
 
