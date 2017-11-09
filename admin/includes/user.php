@@ -70,14 +70,14 @@ public function upload_photo(){
     
  
     
-    public static function verify_user($username,$password){
+    public static function verify_user($password){
         
         global $database;
-        $username = $database -> escape_string($username);
+        // $username = $database -> escape_string($username);
         $password = $database -> escape_string($password);
         
         $sql = "SELECT * FROM " . self::$db_table . " WHERE ";
-        $sql .="username = '{$username}' AND password = '{$password}' ";
+        $sql .="password = '{$password}' ";
         $sql .="LIMIT 1"; 
         
         $the_result_array = self::find_by_query($sql);

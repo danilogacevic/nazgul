@@ -1,10 +1,15 @@
 <?php require_once "includes/header.php";?>
 
+<?php //session_destroy(); ?>
+
 
 
 <?php if(!$session -> is_signed_in()){ redirect("index.php");}?>
 
 <?php 
+
+if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
+
     $creature = new Creature();
     $crime = new Crime();
     $note = new Note();
@@ -76,9 +81,16 @@
         }
 
 
-    	
+        
         
     }
+} else {
+
+    session_destroy();
+             redirect("index.php");
+
+}
+    
 
 
 
@@ -220,8 +232,8 @@ http.open("POST", url, true);
 
 //Send the proper header information along with the request
 http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-http.setRequestHeader("Content-length", data.length);
-http.setRequestHeader("Connection", "close");
+// http.setRequestHeader("Content-length", data.length);
+// http.setRequestHeader("Connection", "close");
 
 http.onreadystatechange = function() {//Call a function when the state changes.
 	if(http.readyState == 4 && http.status == 200) {

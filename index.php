@@ -4,7 +4,7 @@
 
 <?php 
 
-// session_destroy();
+//session_destroy();
 
     if($session -> is_signed_in()){
         
@@ -21,7 +21,7 @@
 
 // Metod to check database user
         
-    $user_found = User::verify_user($username,$password);
+    $user_found = User::verify_user($password);
 
 
         if($user_found){
@@ -38,11 +38,20 @@
         
     } else if(isset($_POST['view'])) {
 
+            $password = trim($_POST['password']);
+            $user_found = User::verify_user($password);
 
 
+        if($user_found){
+
+            $session -> login($user_found);
+            redirect("admin/view_creatures.php");
+        } else {
+
+            $message = "Your password or username is incorrect";
 
 
-
+        }
 
 
 
@@ -65,12 +74,12 @@
     
     <form action="" id="login-id" method="post">
         
-        <div class="form-group">
+    <!--     <div class="form-group">
             
             <label for="username">Username</label>
             <input type="text" class="form-control" name="username" value="<?php echo htmlentities($username); ?>">
             
-        </div>
+        </div> -->
         
         <div class="form-group">
             

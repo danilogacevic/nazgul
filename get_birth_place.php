@@ -6,7 +6,7 @@ $data = $_POST['data'];
 
 if(!empty($data)) {
 
-	$query = "SELECT * FROM creatures WHERE birth_place LIKE '$data%' ";
+	$query = "SELECT * FROM creatures WHERE birth_place LIKE '$data%' LIMIT 1 ";
 
 $creatures = Creature::find_by_query($query);
 
