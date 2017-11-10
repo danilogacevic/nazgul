@@ -26,6 +26,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
             $creature->birth_date=$_POST['birth_date'];
             $creature->ever_carried_ring=$_POST['ever_carried_ring'];
             $creature->enslaved_by_sauron=$_POST['enslaved_by_sauron'];
+            $creature->race=$_POST['race'];
            
             $creature->create();
             // $session->message("The creature {$creature->name} has been created");
@@ -49,7 +50,10 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
             $crime->note = $_POST['crime_note'];
             $crime->datum = $_POST['crime_date'];
             $crime->punished = $_POST['punished_by_sauron'];
-            $crime->create();
+            if(!empty($crime->note)){
+                $crime->create();
+            }
+            
         }
 
             
@@ -71,8 +75,10 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
             $note->datum = $_POST['note_date'];
             $note->note = $_POST['note'];
             
-           
-            $note->create();
+            if(!empty($note->note)){
+                $note->create();
+            }
+            
         }
 
             
@@ -109,14 +115,15 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
                                 <div >
 
                                     <label for="name" class="">Name</label>
-                                    <input type="text"  name="name">
+                                    <input type="text"  name="name" required>
 
                                 </div>
 
                                 <div >
 
                                     <label for="gender">Gender</label>
-                                    <select name="gender">
+                                    <select name="gender" required>
+                                        <option value="">Choose</option>
 									  <option value="male">Male</option>
 									  <option value="female">Female</option>
 									  <option value="unknown">Unknown</option>
@@ -130,7 +137,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
                                     <label for="birth_place">Place of birth</label>
                                     
 
-                                 <input type="text" name="birth_place" id="birth_place" onkeyup="myFunction(); return false;">
+                                 <input type="text" name="birth_place" id="birth_place" onkeyup="myFunction(); return false;" required>
                                  <div id="javas" style="position: absolute;top: 11%;left: 45%;"></div>
 
                                 </div>
@@ -138,7 +145,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
                                 <div >
 
                                     <label for="birth_date">Date of birth</label>
-                                    <input type="date"  name="birth_date">
+                                    <input type="date"  name="birth_date" required>
 
                                 </div>
 
@@ -161,7 +168,8 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
                                 <div >
 
                                     <label for="race">Race</label>
-                                    <select name="race">
+                                    <select name="race" required>
+                                        <option value="">Select race</option>
 									  <option value="elf">Elf</option>
 									  <option value="dwarf">Dwarf</option>
 									  <option value="hobbit">Hobbit</option>

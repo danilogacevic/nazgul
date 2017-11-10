@@ -50,16 +50,28 @@
                            <table>
                                 <thead>
                                     <tr>
-                                       <th>Name <select id="order">
+                                       <th>Name <select class="order">
                                       <option value="0">Order by</option>
                                       <option value="alphabet">A-Z</option>
                                     </select></th>
                                        <th>Gender</th>
                                        <th>Place of birth</th>
-                                       <th>Date of birth</th>
+                                       <th>Date of birth<select class="order">
+                                      <option value="0">Order by</option>
+                                      <option value="birth_date">Birth date</option>
+                                    </select></th>
                                        <th>Ever carried The ring ?</th>
                                        <th>Enslaved by Sauron</th>
-                                       <th>Race</th>
+                                       <th>Race<select class="order">
+                                      <option value="0">Select by</option>
+                                      <option value="Elf">Elf</option>
+                                      <option value="Dwarf">Dwarf</option>
+                                      <option value="Hobbit">Hobbit</option>
+                                      <option value="Orc">Orc</option>
+                                      <option value="Human">Human</option>
+                                      <option value="Ghost">Ghost</option>
+                                      <option value="Other">Other</option>
+                                    </select></th>
                                        <th>Crimes against Sauron</th>
                                        <th>Notes</th>
                                     </tr>
@@ -76,7 +88,7 @@
                                     <td><?php echo $creature->birth_date; ?></td>
                                     <td><?php echo $creature->ever_carried_ring; ?></td>
                                     <td><?php echo $creature->enslaved_by_sauron; ?></td>
-                                    <td><?php echo $creature->name; ?></td>
+                                    <td><?php echo $creature->race; ?></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
 
@@ -114,7 +126,7 @@ function crimes () {
 
 var url = "ajax_view_creatures.php";
 
-//var data = document.getElementById("birth_place").value;
+
 
 var id = this.rel;
 var constr = this.text;
@@ -148,11 +160,23 @@ window.onload = function() {
                 anchor.onclick = crimes;
             }
         }
-    }
+
+        var selects = document.getElementsByTagName('select');
+
+        for(var i = 0; i < selects.length; i++) {
+            var select = selects[i];
+            if(("order").match(select.className)) {
+                select.onchange = order;
+            }
+        }
+
+      }
 
 
 
-document.getElementById('order').onchange = function() {
+// order alphabetically 
+
+function order() {
 
   // console.log(order);
 

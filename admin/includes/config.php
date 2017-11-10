@@ -68,7 +68,8 @@ gender VARCHAR(30) NOT NULL,
 birth_place VARCHAR(30) NOT NULL,
 birth_date DATE,
 ever_carried_ring TINYINT(1),
- enslaved_by_sauron TINYINT(1),
+enslaved_by_sauron TINYINT(1),
+race VARCHAR(30) NOT NULL,
 reg_date TIMESTAMP
 )";
 
