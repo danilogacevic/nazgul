@@ -33,6 +33,7 @@
 	$creatures = Creature::find_all();
 
    
+  //session_destroy();
 
 } else {
 
@@ -45,8 +46,8 @@
 
 	?>
 
-    <div class="col-md-12">
-                           <table class="table table-hover">
+    <div>
+                           <table>
                                 <thead>
                                     <tr>
                                        <th>Name</th>
@@ -73,8 +74,8 @@
                                     <td><?php echo $creature->ever_carried_ring; ?></td>
                                     <td><?php echo $creature->enslaved_by_sauron; ?></td>
                                     <td><?php echo $creature->name; ?></td>
-                                    <td><a href="javascript:void(0);" rel="<?php echo $creature->id; ?>">Crimes</a></td>
-                                    <td><a href="" class="notes" rel="<?php echo $creature->id; ?>">Notes</a></td>
+                                    <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
+                                    <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
 
                                </tr>
 
@@ -89,6 +90,8 @@
 
                         </div>
 
+                        <div id="crimes"></div>
+
                         
 
 
@@ -100,14 +103,44 @@
 
         function crimes () {
 
-            console.log(this.rel);
+            console.log(this.text);
+
+             var http = new XMLHttpRequest();
+
+
+var url = "ajax_view_creatures.php";
+
+//var data = document.getElementById("birth_place").value;
+
+var id = this.rel;
+var constr = this.text;
+
+var  data = 'id='+id+'&constr='+constr;
+
+http.open("POST", url, true);
+
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// http.setRequestHeader("Content-length", data.length);
+// http.setRequestHeader("Connection", "close");
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+  if(http.readyState == 4 && http.status == 200) {
+    document.getElementById("crimes").innerHTML =http.responseText;
+
+    // alert(http.responseText);
+  }
+}
+http.send(data);
         }
+
+
 
         window.onload = function() {
         var anchors = document.getElementsByTagName('a');
         for(var i = 0; i < anchors.length; i++) {
             var anchor = anchors[i];
-            if(("crimes").match(anchor.className)) {
+            if(("notecrim").match(anchor.className)) {
                 anchor.onclick = crimes;
             }
         }
