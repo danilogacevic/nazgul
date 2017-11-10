@@ -46,11 +46,14 @@
 
 	?>
 
-    <div>
+    <div id="creatures">
                            <table>
                                 <thead>
                                     <tr>
-                                       <th>Name</th>
+                                       <th>Name <select id="order">
+                                      <option value="0">Order by</option>
+                                      <option value="alphabet">A-Z</option>
+                                    </select></th>
                                        <th>Gender</th>
                                        <th>Place of birth</th>
                                        <th>Date of birth</th>
@@ -100,8 +103,9 @@
 
     <script>
         
+// display crimes and notes
 
-        function crimes () {
+function crimes () {
 
             console.log(this.text);
 
@@ -134,9 +138,9 @@ http.onreadystatechange = function() {//Call a function when the state changes.
 http.send(data);
         }
 
+// call funciton crimes on click crimes or notes
 
-
-        window.onload = function() {
+window.onload = function() {
         var anchors = document.getElementsByTagName('a');
         for(var i = 0; i < anchors.length; i++) {
             var anchor = anchors[i];
@@ -146,5 +150,38 @@ http.send(data);
         }
     }
 
-        // document.getElementById('crimes').onclick=crimes;
+
+
+document.getElementById('order').onchange = function() {
+
+  // console.log(order);
+
+  // var script = document.getElementsByTagName("script")[0];
+
+  var data = this.options[this.selectedIndex].value;
+
+  var http = new XMLHttpRequest();
+
+
+var url = "ajax_view_creatures.php";
+
+http.open("POST", url, true);
+
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// http.setRequestHeader("Content-length", data.length);
+// http.setRequestHeader("Connection", "close");
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+  if(http.readyState == 4 && http.status == 200) {
+    document.getElementById("creatures").innerHTML =http.responseText;
+
+    window.onload();
+  }
+}
+http.send('order='+data);
+
+}
+
+        
     </script>
