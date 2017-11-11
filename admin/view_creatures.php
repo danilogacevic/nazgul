@@ -64,16 +64,18 @@
                                        <th>Enslaved by Sauron</th>
                                        <th>Race<select class="order">
                                       <option value="0">Select by</option>
-                                      <option value="Elf">Elf</option>
-                                      <option value="Dwarf">Dwarf</option>
-                                      <option value="Hobbit">Hobbit</option>
-                                      <option value="Orc">Orc</option>
-                                      <option value="Human">Human</option>
-                                      <option value="Ghost">Ghost</option>
-                                      <option value="Other">Other</option>
+                                      <option value="elf">Elf</option>
+                                      <option value="dwarf">Dwarf</option>
+                                      <option value="hobbit">Hobbit</option>
+                                      <option value="orc">Orc</option>
+                                      <option value="human">Human</option>
+                                      <option value="ghost">Ghost</option>
+                                      <option value="other">Other</option>
                                     </select></th>
-                                       <th>Crimes against Sauron</th>
+                                       <th>Crimes against Sauron <button id="with_crimes">With crimes<br>against Sauron</button><br><input type="text" id="crimes_num" style="width: 14%;
+    margin: 2% 0% 4% 62%;"></th>
                                        <th>Notes</th>
+                                      
                                     </tr>
                                </thead>
                                <tbody>
@@ -86,11 +88,12 @@
                                     <td><?php echo $creature->gender; ?></td>
                                     <td><?php echo $creature->birth_place; ?></td>
                                     <td><?php echo $creature->birth_date; ?></td>
-                                    <td><?php echo $creature->ever_carried_ring; ?></td>
-                                    <td><?php echo $creature->enslaved_by_sauron; ?></td>
+                                    <td><?php if($creature->ever_carried_ring == 1) {echo "yes";} else {echo "no";} ?></td>
+                                    <td><?php if($creature->enslaved_by_sauron == 1) {echo "yes";} else {echo "no";} ?></td>
                                     <td><?php echo $creature->race; ?></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
+                                    
 
                                </tr>
 
@@ -114,6 +117,33 @@
     </body>
 
     <script>
+
+
+// call funciton crimes on click crimes,notes and filters
+
+window.onload = function() {
+
+        var anchors = document.getElementsByTagName('a');
+          for(var i = 0; i < anchors.length; i++) {
+              var anchor = anchors[i];
+              if(("notecrim").match(anchor.className)) {
+                  anchor.onclick = crimes;
+              }
+          }
+
+        var selects = document.getElementsByTagName('select');
+
+          for(var i = 0; i < selects.length; i++) {
+              var select = selects[i];
+              if(("order").match(select.className)) {
+                  select.onchange = order;
+              }
+          }
+
+        document.getElementById("with_crimes").onclick=creatures_with_crimes;
+
+      }
+
         
 // display crimes and notes
 
@@ -150,39 +180,17 @@ http.onreadystatechange = function() {//Call a function when the state changes.
 http.send(data);
         }
 
-// call funciton crimes on click crimes or notes
-
-window.onload = function() {
-        var anchors = document.getElementsByTagName('a');
-        for(var i = 0; i < anchors.length; i++) {
-            var anchor = anchors[i];
-            if(("notecrim").match(anchor.className)) {
-                anchor.onclick = crimes;
-            }
-        }
-
-        var selects = document.getElementsByTagName('select');
-
-        for(var i = 0; i < selects.length; i++) {
-            var select = selects[i];
-            if(("order").match(select.className)) {
-                select.onchange = order;
-            }
-        }
-
-      }
-
-
 
 // order alphabetically 
 
 function order() {
 
-  // console.log(order);
+   // console.log(this.options[this.selectedIndex].innerHTML);
 
   // var script = document.getElementsByTagName("script")[0];
 
   var data = this.options[this.selectedIndex].value;
+  var text = this.options[this.selectedIndex].innerHTML;
 
   var http = new XMLHttpRequest();
 
@@ -203,8 +211,39 @@ http.onreadystatechange = function() {//Call a function when the state changes.
     window.onload();
   }
 }
-http.send('order='+data);
+http.send('order='+data+'&text='+text);
 
+}
+
+function creatures_with_crimes() {
+
+  var http = new XMLHttpRequest();
+
+
+var url = "creatures_with_crimes.php";
+
+
+
+var limit = document.getElementById('crimes_num').value;
+
+
+// var  data = 'id='+id+'&constr='+constr;
+
+http.open("POST", url, true);
+
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// http.setRequestHeader("Content-length", data.length);
+// http.setRequestHeader("Connection", "close");
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+  if(http.readyState == 4 && http.status == 200) {
+    document.getElementById("creatures").innerHTML =http.responseText;
+     window.onload();
+    // alert(http.responseText);
+  }
+}
+http.send('limit='+limit);
 }
 
         

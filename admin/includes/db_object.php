@@ -76,6 +76,22 @@ class Db_object {
         
     }
 
+    public static function count($sql){
+        
+        global $database;
+        $result_set = $database -> query($sql);
+        // $the_object_array = array();
+        // while($row = mysqli_fetch_array($result_set)){
+        // $the_object_array[] = static::instantiation($row);   
+            
+          
+        // }
+        return mysqli_num_rows($result_set);
+        
+        
+        
+    }
+
 
     private static function instantiation($the_record){
         
@@ -217,6 +233,8 @@ class Db_object {
 
 
     // }
+
+
 
 
 
