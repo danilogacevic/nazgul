@@ -7,6 +7,11 @@ if(isset($_POST['id'])){
 
 $id=$_POST['id'];
 
+// Not so good in MySql :)
+
+$crime=new Crime;$note=new Note;
+$crime->delete_many($id);
+$note->delete_many($id);
 
 $creature = Creature::find_by_id($id);
 
@@ -19,7 +24,7 @@ $creatures = Creature::find_all();
                                 <thead>
                                     <tr>
                                        <th>Name <select class="order">
-                                      <option value="0">Order by</option>
+                                      <option value="0">All</option>
                                       <option value="alphabet">A-Z</option>
                                     </select></th>
                                        <th>Gender</th>

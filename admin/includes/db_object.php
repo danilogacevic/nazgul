@@ -153,6 +153,23 @@ class Db_object {
 
     }
 
+    public function delete_many($id){
+ 
+
+        global $database;
+
+        $sql = "DELETE FROM " . static::$db_table . " "; 
+        $sql .= "WHERE creature_id =" . $id;
+
+        $database->query($sql);
+
+        return (mysqli_affected_rows($database->connection)==1) ? true : false;
+
+
+    }
+
+ 
+
 
 
     // public static function count_all(){

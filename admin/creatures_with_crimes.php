@@ -1,5 +1,6 @@
 <?php require_once "includes/init.php";?>
 
+
 <?php 
 
 if(isset($_POST['limit'])){
@@ -33,7 +34,7 @@ $creatures = Creature::find_by_query($query); ?>
                                 <thead>
                                     <tr>
                                        <th>Name <select class="order">
-                                      <option value="0">Order by</option>
+                                      <option value="0">All</option>
                                       <option value="alphabet">A-Z</option>
                                     </select></th>
                                        <th>Gender</th>
@@ -66,9 +67,9 @@ $creatures = Creature::find_by_query($query); ?>
 
     if($limit) {
 
-      $query ="SELECT id FROM crimes WHERE creature_id= {$creature->id}";
+      $query ="SELECT id FROM crimes WHERE creature_id = {$creature->id} AND punished = 0 ";
 
-    if (Crime::count($query) >= $limit){
+    if (Crime::count($query) > $limit){
 
     $creature->ever_carried_ring == 1 ? $creature->ever_carried_ring = 'yes' : $creature->ever_carried_ring = 'no';
     $creature->enslaved_by_sauron == 1 ? $creature->enslaved_by_sauron = 'yes' : $creature->enslaved_by_sauron = 'no';
@@ -93,11 +94,14 @@ $creatures = Creature::find_by_query($query); ?>
 
     }
 
-    
-
 
 
   } else {
+
+    $query ="SELECT id FROM crimes WHERE creature_id= {$creature->id} AND punished = 0";
+
+    if (Crime::count($query) > 0){
+
 
     $creature->ever_carried_ring == 1 ? $creature->ever_carried_ring = 'yes' : $creature->ever_carried_ring = 'no';
     $creature->enslaved_by_sauron == 1 ? $creature->enslaved_by_sauron = 'yes' : $creature->enslaved_by_sauron = 'no';
@@ -115,6 +119,10 @@ $creatures = Creature::find_by_query($query); ?>
                         <td><a class='delete' href='javascript:void(0);' rel='$creature->id'>Delete</a></td>
 
             </tr>";
+
+    }
+
+
 
   }
 
@@ -139,7 +147,7 @@ $creatures = Creature::find_all();
                                 <thead>
                                     <tr>
                                        <th>Name <select class="order">
-                                      <option value="0">Order by</option>
+                                      <option value="0">All</option>
                                       <option value="alphabet">A-Z</option>
                                     </select></th>
                                        <th>Gender</th>

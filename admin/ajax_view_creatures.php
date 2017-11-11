@@ -47,7 +47,13 @@ if(!empty($id) && $constr=='Crimes') {
                                <tr>
                                     <td><?php echo $crime->note; ?></td>
                                     <td><?php echo $crime->datum; ?></td>
-                                    <td><?php echo $crime->punished; ?></td>
+                                    <td><?php if($crime->punished){
+                                            echo 'yes';
+                                    }else {
+                                      echo 'no';
+                                    } ?>
+                                    
+                                    </td>
                                     
                                </tr>
 
@@ -130,7 +136,7 @@ if(Note::count($query) > 0) {
                                 <thead>
                                     <tr>
                                        <th>Name <select class="order">
-                                      <option value="0">Order by</option>
+                                      <option value="0">All</option>
                                       <option value="alphabet">A-Z</option>
                                     </select></th>
                                        <th>Gender</th>
@@ -195,7 +201,7 @@ if(Note::count($query) > 0) {
                                 <thead>
                                     <tr>
                                        <th>Name <select class="order">
-                                      <option value="0">Order by</option>
+                                      <option value="0">All</option>
                                       <option value="alphabet">A-Z</option>
                                     </select></th>
                                        <th>Gender</th>
@@ -260,7 +266,7 @@ if(Note::count($query) > 0) {
                                 <thead>
                                     <tr>
                                        <th>Name <select class="order">
-                                      <option value="0">Order by</option>
+                                      <option value="0">All</option>
                                       <option value="alphabet">A-Z</option>
                                     </select></th>
                                        <th>Gender</th>

@@ -48,12 +48,14 @@
 
 	?>
 
+  
+
     <div id="creatures">
                            <table>
                                 <thead>
                                     <tr>
                                        <th>Name <select class="order">
-                                      <option value="0">Order by</option>
+                                      <option value="0">All</option>
                                       <option value="alphabet">A-Z</option>
                                     </select></th>
                                        <th>Gender</th>

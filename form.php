@@ -231,6 +231,9 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
 <script>
 
+
+// ajax call to get birth places from database
+
 	function myFunction()
 {
   
@@ -265,15 +268,19 @@ function hey () {
 }
 
 
+
+// add more crimes and notes
+
+
 var i = 0;
 var original = document.getElementById('duplicater');
 var original_note = document.getElementById('note');
 
+
 function duplicate() {
-    var clone = original.cloneNode(true); // "deep" clone
-    clone.id = "duplicater" + ++i;
-    // or clone.id = ""; if the divs don't need an ID
-    // original.appendChild(clone);
+    var clone = original.cloneNode(true); 
+    // clone.id = "duplicater" + ++i;
+    clearChildren(clone);
 
     insertAfter(clone,original);
 
@@ -281,10 +288,10 @@ function duplicate() {
 }
 
 function duplicate_note() {
-    var clone = original_note.cloneNode(true); // "deep" clone
-    clone.id = "duplicater" + ++i;
-    // or clone.id = ""; if the divs don't need an ID
-    // original.appendChild(clone);
+    var clone = original_note.cloneNode(true); 
+    // clone.id = "duplicater" + ++i;
+    clearChildren(clone);
+
 
     insertAfter(clone,original_note);
 
@@ -299,8 +306,23 @@ document.getElementById("add_crime").onclick = duplicate;
 document.getElementById("add_note").onclick = duplicate_note;
 
 
+// clear input fields on adding crimes and notes
 
-
+function clearChildren(element) {
+   for (var i = 0; i < element.childNodes.length; i++) {
+      var e = element.childNodes[i];
+      if (e.tagName) switch (e.tagName.toLowerCase()) {
+         case 'input':
+            switch (e.type) {
+               case "text": e.value = '';
+               default: e.value = ''; break;
+            }
+            break;
+         case 'select': e.selectedIndex = 0; break;
+         default: e.value = '';
+      }
+   }
+}
 
 
 
