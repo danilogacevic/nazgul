@@ -171,6 +171,7 @@ if(Note::count($query) > 0) {
                                     <td><?php echo $creature->race; ?></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
+                                    <td><a class="delete" href="javascript:void(0);" rel="<?php echo $creature->id; ?>" >Delete</a></td>
 
                                </tr>
 
@@ -235,6 +236,7 @@ if(Note::count($query) > 0) {
                                     <td><?php echo $creature->race; ?></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
+                                    <td><a class="delete" href="javascript:void(0);" rel="<?php echo $creature->id; ?>" >Delete</a></td>
 
                                </tr>
 
@@ -299,6 +301,7 @@ if(Note::count($query) > 0) {
                                     <td><?php echo $creature->race; ?></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
+                                    <td><a class="delete" href="javascript:void(0);" rel="<?php echo $creature->id; ?>" >Delete</a></td>
 
                                </tr>
 

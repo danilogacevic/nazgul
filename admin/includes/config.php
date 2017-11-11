@@ -32,7 +32,7 @@ $conn = mysqli_connect($servername, $username, $password, "techire_h02");
 $sql = "CREATE TABLE IF NOT EXISTS users (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(30) NOT NULL, 
-password VARCHAR(30) NOT NULL,
+password VARCHAR(40) NOT NULL,
 reg_date TIMESTAMP
 )";
 
@@ -43,16 +43,18 @@ if (!mysqli_query($conn,$sql) === TRUE) {
 
 $result = mysqli_query($conn,"SELECT * FROM users");
 
+// create users for app
+
 if(mysqli_num_rows($result) == 0) {
 
-			$sql = "INSERT INTO users (username, password) VALUE ('add_creature','PleCh513Tf')";
+			$sql = "INSERT INTO users (username, password) VALUE ('add_creature','6a446225bb626a97e28b2adf116c3748')";
 
 		if (!mysqli_query($conn,$sql) === TRUE) {
 
 		    echo "Something is wrong";
 		}
 
-		$sql = "INSERT INTO users (username,password) VALUE ('view_creature','Tlu864QwEm')";
+		$sql = "INSERT INTO users (username,password) VALUE ('view_creature','5ed8150cd2f23d489d693d2f3050d9ba')";
 
 		if (!mysqli_query($conn,$sql) === TRUE) {
 
@@ -60,6 +62,8 @@ if(mysqli_num_rows($result) == 0) {
 		}
 
 } 
+
+// create creatures table
 
 $sql = "CREATE TABLE IF NOT EXISTS creatures (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -78,6 +82,8 @@ if (!mysqli_query($conn,$sql) === TRUE) {
     echo "Something is wrong";
 }
 
+// create crimes table
+
 $sql = "CREATE TABLE IF NOT EXISTS crimes (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 creature_id INT(6) UNSIGNED,
@@ -91,6 +97,8 @@ if (!mysqli_query($conn,$sql) === TRUE) {
 
     echo "Something is wrong";
 }
+
+// create notes table
 
 $sql = "CREATE TABLE IF NOT EXISTS notes (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -129,8 +137,7 @@ foreach ($db as $key => $value){
     
 }
 
-// $con = mysql_connect("localhost", "root", "");  
-// $selectdb = mysql_select_db("techire_h02",$con);
+
 
 
 ?>

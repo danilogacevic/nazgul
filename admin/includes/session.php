@@ -13,7 +13,6 @@ class Session {
         
         session_start();
         $this -> check_the_login();
-        $this->visitor_count();
         $this->check_message();
         
      
@@ -71,6 +70,7 @@ class Session {
     public function logout(){
         
         unset($_SESSION['user_id']);
+        unset($_SESSION['feature']);
         unset($this -> user_id);
         $this -> signed_in = false;
         
@@ -92,18 +92,6 @@ class Session {
         
      
     }
-
-    public function visitor_count(){
-
-        if(isset($_SESSION['count'])){
-
-            $this->count=$_SESSION['count']++;
-
-        } else {
-
-            return $_SESSION['count']=1;
-        }
-    }
     
     
     
@@ -114,15 +102,6 @@ class Session {
 
 $session = new Session();
 $message = $session->message();
-
-
-
-
-
-
-
-
-
 
 
 

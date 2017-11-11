@@ -19,7 +19,7 @@ class Database {
         
         $this -> connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
         
-//        $this -> connection = new mysql(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+
         
         if(mysqli_connect_errno()){
             
@@ -39,14 +39,7 @@ class Database {
         return $result;
     }
     
-    private function confirm(){
-        
-        if(!result){
-            
-            die("Query failed");
-        }
-        
-    }
+
     
     public function escape_string($string){
         

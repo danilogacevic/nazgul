@@ -20,9 +20,9 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
         if($creature){
 
-            $creature->name=$_POST['name'];
+            $creature->name=clean($_POST['name']);
             $creature->gender=$_POST['gender'];
-            $creature->birth_place=$_POST['birth_place'];
+            $creature->birth_place=clean($_POST['birth_place']);
             $creature->birth_date=$_POST['birth_date'];
             $creature->ever_carried_ring=$_POST['ever_carried_ring'];
             $creature->enslaved_by_sauron=$_POST['enslaved_by_sauron'];
@@ -30,25 +30,26 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
             $creature->reg_date = date("Y-m-d H:i:s");
            
             $creature->create();
-            // $session->message("The creature {$creature->name} has been created");
-            // session_destroy();
-            // redirect("index.php");
+            $session->message("The creature {$creature->name} has been created");
+            
             $creature_id = $database->the_insert_id();
         }
 
         if($crime) {
 
+            $crime_notes = array_map(clean, $_POST['crime_note']);
+
             $mi = new MultipleIterator();
-            $mi->attachIterator(new ArrayIterator($_POST['crime_note']));
+            $mi->attachIterator(new ArrayIterator($crime_notes));
             $mi->attachIterator(new ArrayIterator($_POST['crime_date']));
             $mi->attachIterator(new ArrayIterator($_POST['punished_by_sauron']));
 
             foreach ( $mi as $value ) {
-            list($_POST['crime_note'], $_POST['crime_date'], $_POST['punished_by_sauron']) = $value;
+            list($crime_notes, $_POST['crime_date'], $_POST['punished_by_sauron']) = $value;
 
 
             $crime->creature_id=$creature_id;
-            $crime->note = $_POST['crime_note'];
+            $crime->note = $crime_notes;
             $crime->datum = $_POST['crime_date'];
             $crime->punished = $_POST['punished_by_sauron'];
             if(!empty($crime->note)){
@@ -63,18 +64,20 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
         if($note) {
 
+            $notes = array_map(clean, $_POST['note']);
+
             $vi = new MultipleIterator();
             $vi->attachIterator(new ArrayIterator($_POST['note_date']));
-            $vi->attachIterator(new ArrayIterator($_POST['note']));
+            $vi->attachIterator(new ArrayIterator($notes));
             
             foreach ( $vi as $value ) {
 
-            list($_POST['note_date'], $_POST['note']) = $value;
+            list($_POST['note_date'], $notes) = $value;
 
 
             $note->creature_id=$creature_id;
             $note->datum = $_POST['note_date'];
-            $note->note = $_POST['note'];
+            $note->note = $notes;
             
             if(!empty($note->note)){
                 $note->create();
@@ -83,14 +86,15 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
         }
 
             
-             session_destroy();
-             redirect("index.php");
+             
         }
 
 
-        
+        $session->logout();
+        redirect("index.php");
         
     }
+
 } else {
 
     session_destroy();

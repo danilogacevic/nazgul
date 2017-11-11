@@ -14,7 +14,7 @@
 
     if(isset($_POST['create'])){
         
-        // $username = trim($_POST['username']);
+       
         $password = trim($_POST['password']);
     
     
@@ -70,16 +70,12 @@
 
 <div class="col-md-4 col-md-offset-4">
    
+   <h4 class="bg-danger"><?php echo $session->message; ?></h4>
    <h4 class="bg-danger"><?php echo $message; ?></h4>
     
     <form action="" id="login-id" method="post">
         
-    <!--     <div class="form-group">
-            
-            <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" value="<?php echo htmlentities($username); ?>">
-            
-        </div> -->
+ 
         
         <div class="form-group">
             

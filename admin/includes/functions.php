@@ -31,12 +31,10 @@ function redirect($location){
     
 }
 
+function clean($string){
 
-
-
-
-
-
+	return htmlentities($string);
+}
 
 
 

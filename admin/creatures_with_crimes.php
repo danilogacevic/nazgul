@@ -85,6 +85,7 @@ $creatures = Creature::find_by_query($query); ?>
                         <td>$creature->race</td>
                         <td><a href='javascript:void(0);' class='notecrim' rel='$creature->id'>Crimes</a></td>
                         <td><a href='javascript:void(0);' class='notecrim' rel='$creature->id'>Notes</a></td>
+                        <td><a class='delete' href='javascript:void(0);' rel='$creature->id'>Delete</a></td>
 
             </tr>";
   
@@ -111,6 +112,7 @@ $creatures = Creature::find_by_query($query); ?>
                         <td>$creature->race</td>
                         <td><a href='javascript:void(0);' class='notecrim' rel='$creature->id'>Crimes</a></td>
                         <td><a href='javascript:void(0);' class='notecrim' rel='$creature->id'>Notes</a></td>
+                        <td><a class='delete' href='javascript:void(0);' rel='$creature->id'>Delete</a></td>
 
             </tr>";
 
@@ -179,6 +181,7 @@ $creatures = Creature::find_all();
                                     <td><?php echo $creature->race; ?></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
+                                    <td><a class="delete" href="javascript:void(0);" rel="<?php echo $creature->id; ?>" >Delete</a></td>
                                     
 
                                </tr>

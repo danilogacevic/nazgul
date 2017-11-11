@@ -30,6 +30,8 @@
 
 <?php if($session -> is_signed_in() && $session ->feature() == 'view_creature'){
 
+  $session->logout();
+
 	$creatures = Creature::find_all();
 
    
@@ -37,7 +39,7 @@
 
 } else {
 
-    session_destroy();
+    $session->logout();
      redirect("../index.php");
 
  }
@@ -95,6 +97,7 @@
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
                                     <td><?php echo $creature->reg_date ?></td>
+                                    <td><a class="delete" href="javascript:void(0);" rel="<?php echo $creature->id; ?>" >Delete</a></td>
                                     
 
                                </tr>
@@ -130,6 +133,9 @@ window.onload = function() {
               var anchor = anchors[i];
               if(("notecrim").match(anchor.className)) {
                   anchor.onclick = crimes;
+              } else if(("delete").match(anchor.className)){
+
+                  anchor.onclick = delete_creature;
               }
           }
 
@@ -248,6 +254,37 @@ http.onreadystatechange = function() {//Call a function when the state changes.
   }
 }
 http.send('limit='+limit);
+}
+
+function delete_creature(){
+
+  var http = new XMLHttpRequest();
+
+
+var url = "delete_creature.php";
+
+var id = this.rel;
+
+
+// var  data = 'id='+id+'&constr='+constr;
+
+http.open("POST", url, true);
+
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// http.setRequestHeader("Content-length", data.length);
+// http.setRequestHeader("Connection", "close");
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+  if(http.readyState == 4 && http.status == 200) {
+    document.getElementById("creatures").innerHTML =http.responseText;
+    document.getElementById("crimes").innerHTML='';
+     window.onload();
+     // console.log('yueahhhhh');
+    // alert(http.responseText);
+  }
+}
+http.send('id='+id);
 }
 
         
