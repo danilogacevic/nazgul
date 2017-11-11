@@ -75,6 +75,7 @@
                                        <th>Crimes against Sauron <button id="with_crimes">With crimes<br>against Sauron</button><br><input type="text" id="crimes_num" style="width: 14%;
     margin: 2% 0% 4% 62%;"></th>
                                        <th>Notes</th>
+                                       <th>Created_at</th>
                                       
                                     </tr>
                                </thead>
@@ -93,6 +94,7 @@
                                     <td><?php echo $creature->race; ?></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Crimes</a></td>
                                     <td><a href="javascript:void(0);" class="notecrim" rel="<?php echo $creature->id; ?>">Notes</a></td>
+                                    <td><?php echo $creature->reg_date ?></td>
                                     
 
                                </tr>
@@ -207,6 +209,7 @@ http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 http.onreadystatechange = function() {//Call a function when the state changes.
   if(http.readyState == 4 && http.status == 200) {
     document.getElementById("creatures").innerHTML =http.responseText;
+    document.getElementById("crimes").innerHTML='';
 
     window.onload();
   }
@@ -239,6 +242,7 @@ http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 http.onreadystatechange = function() {//Call a function when the state changes.
   if(http.readyState == 4 && http.status == 200) {
     document.getElementById("creatures").innerHTML =http.responseText;
+    document.getElementById("crimes").innerHTML='';
      window.onload();
     // alert(http.responseText);
   }

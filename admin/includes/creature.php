@@ -3,7 +3,7 @@
 class Creature extends Db_object {
     
     protected static $db_table = "creatures";
-    protected static $db_table_fields = array('name','gender','birth_place','birth_date','ever_carried_ring','enslaved_by_sauron','race');
+    protected static $db_table_fields = array('name','gender','birth_place','birth_date','ever_carried_ring','enslaved_by_sauron','race','reg_date');
     public $id;
     public $name;
     public $gender;
@@ -12,6 +12,7 @@ class Creature extends Db_object {
     public $ever_carried_ring;
     public $enslaved_by_sauron;
     public $race;
+    public $reg_date;
     // public $upload_directory = "images";
     // public $image_placeholder = "http://placehold.it/400x400&text=image";
     

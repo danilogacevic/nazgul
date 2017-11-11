@@ -24,11 +24,13 @@ if(!empty($id) && $constr=='Crimes') {
 
 	$query = "SELECT * FROM crimes WHERE creature_id={$id} ";
 
-	$crimes = Crime::find_by_query($query); ?>
+  if(Crime::count($query) >0){ 
 
-	
+  $crimes = Crime::find_by_query($query); ?>
 
-	<table>
+  
+
+  <table>
                                 <thead>
                                     <tr>
                                        <th>Note</th>
@@ -55,6 +57,15 @@ if(!empty($id) && $constr=='Crimes') {
 
                            </table> <!-- End of table -->
 
+                           <?php } else {?>
+
+                           <h1>This creature is innocent</h1>
+
+
+                           <?php }?>
+
+	
+
 
 
 <?php } elseif (!empty($id) && $constr =='Notes') {
@@ -64,7 +75,10 @@ if(!empty($id) && $constr=='Crimes') {
 
 $query = "SELECT * FROM notes WHERE creature_id={$id} ";
 
-	$notes = Note::find_by_query($query); ?>
+
+if(Note::count($query) > 0) {
+
+  $notes = Note::find_by_query($query); ?>
 
 
 
@@ -94,14 +108,14 @@ $query = "SELECT * FROM notes WHERE creature_id={$id} ";
                                </tbody>
 
                            </table> <!-- End of table -->
+<?php } else { ?>
+
+<h1>There aren't any notes for this creature</h1>
 
 
+<?php } ?>
 
-
-
-
-
-
+	
 
 <?php
 } elseif ($order ==='alphabet') {

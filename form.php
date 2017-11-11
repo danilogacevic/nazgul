@@ -27,6 +27,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
             $creature->ever_carried_ring=$_POST['ever_carried_ring'];
             $creature->enslaved_by_sauron=$_POST['enslaved_by_sauron'];
             $creature->race=$_POST['race'];
+            $creature->reg_date = date("Y-m-d H:i:s");
            
             $creature->create();
             // $session->message("The creature {$creature->name} has been created");
