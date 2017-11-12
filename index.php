@@ -27,7 +27,7 @@
 
 <?php 
 
-//session_destroy();
+
 
     if($session -> is_signed_in()){
         
@@ -38,7 +38,7 @@
     if(isset($_POST['create'])){
         
        
-        $password = trim($_POST['password']);
+        $password = clean($_POST['password']);
     
     
 
@@ -61,7 +61,7 @@
         
     } else if(isset($_POST['view'])) {
 
-            $password = trim($_POST['password']);
+            $password = clean($_POST['password']);
             $user_found = User::verify_user($password);
 
 
@@ -103,7 +103,7 @@
         <div class="form-group">
             
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" value="<?php echo htmlentities($password); ?>">
+            <input type="password" class="form-control" name="password" value="">
             
         </div>
         

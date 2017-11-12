@@ -99,7 +99,8 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
 } else {
 
-    session_destroy();
+    $session->message("you clicked wrong button");
+    $session->logout();
              redirect("index.php");
 
 }
@@ -147,7 +148,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
                                     
 
                                  <input type="text" name="birth_place" id="birth_place" onkeyup="myFunction(); return false;" required>
-                                 <div id="javas" style="position: absolute;top: 15%;left: 57%;"></div>
+                                 <div id="javas" style="position: absolute;top: 20%;left: 57%;"></div>
 
                                 </div>
 

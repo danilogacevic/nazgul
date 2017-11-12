@@ -34,7 +34,7 @@
   //session_destroy();
 
 } else {
-
+    $session->message("you clicked wrong button");
     $session->logout();
      redirect("../index.php");
 

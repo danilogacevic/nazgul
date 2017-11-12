@@ -5,25 +5,25 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password);
-// Check connection
-if(mysqli_connect_errno()){
+// // Create connection
+// $conn = mysqli_connect($servername, $username, $password);
+// // Check connection
+// if(mysqli_connect_errno()){
             
-            die("Database connection failed" . mysqli_error());
+//             die("Database connection failed" . mysqli_error());
             
             
-        } 
+//         } 
 
-// Create database
-$sql = "CREATE DATABASE IF NOT EXISTS techire_h02";
+// // Create database
+// $sql = "CREATE DATABASE IF NOT EXISTS techire_h02";
 
-if (!mysqli_query($conn,$sql) === TRUE) {
+// if (!mysqli_query($conn,$sql) === TRUE) {
 
-    echo "Something is wrong";
-}
+//     echo "Something is wrong";
+// }
 
-$conn->close();
+// $conn->close();
 
 $conn = mysqli_connect($servername, $username, $password, "techire_h02");
 

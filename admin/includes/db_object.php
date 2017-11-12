@@ -168,24 +168,6 @@ class Db_object {
 
     }
 
- 
-
-
-
-    // public static function count_all(){
-
-    //     global $database;
-
-    //     $sql="SELECT COUNT(*) FROM " . static::$db_table;
-    //     $result=$database->query($sql);
-    //     $row=mysqli_fetch_array($result);
-    //     return array_shift($row);
-
-    // }
-
-
-
-
 
 
 } 
