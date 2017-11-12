@@ -17,7 +17,7 @@ foreach ($creatures as $creature) {
 
 			<ul>
 
-				<?php echo "<li style='background-color:red;' id='chose-place' onclick='hey();return false;'>{$creature->birth_place}</li>"; ?>
+				<?php echo "<li style='background-color:yellow;' id='chose-place' onclick='hey();return false;'>{$creature->birth_place}</li>"; ?>
 
 			</ul>
 

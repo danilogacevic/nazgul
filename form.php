@@ -1,5 +1,7 @@
 <?php require_once "includes/header.php";?>
 
+
+
 <?php //session_destroy(); ?>
 
 
@@ -110,51 +112,53 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
 <h1 style="text-align: center;">Nazgul form</h1>
 
-<form action="" style="text-align: center; " method="post">
-	
+<div class="nazgul-form">
+
+    <form action=""   style="text-align: center; " method="post">
+    
                       
-							<div style="width: 25%;text-align: center;margin-left: 25%;">
+                        
 
        
                                
-                                <div >
+                                <div class="creature-feature">
 
                                     <label for="name" class="">Name</label>
                                     <input type="text"  name="name" required>
 
                                 </div>
 
-                                <div >
+                                <div class="creature-feature">
 
                                     <label for="gender">Gender</label>
                                     <select name="gender" required>
                                         <option value="">Choose</option>
-									  <option value="male">Male</option>
-									  <option value="female">Female</option>
-									  <option value="unknown">Unknown</option>
-									  <option value="other">Other</option>
-									</select>
+                                      <option value="male">Male</option>
+                                      <option value="female">Female</option>
+                                      <option value="unknown">Unknown</option>
+                                      <option value="other">Other</option>
+                                    </select>
 
                                 </div>
                               
-                                <div >
+                                <div class="creature-feature">
 
                                     <label for="birth_place">Place of birth</label>
                                     
 
                                  <input type="text" name="birth_place" id="birth_place" onkeyup="myFunction(); return false;" required>
-                                 <div id="javas" style="position: absolute;top: 11%;left: 45%;"></div>
+                                 <div id="javas" style="position: absolute;top: 15%;left: 57%;"></div>
 
                                 </div>
 
-                                <div >
+                                <div class="creature-feature">
 
                                     <label for="birth_date">Date of birth</label>
                                     <input type="date"  name="birth_date" required>
 
                                 </div>
 
-                                 <div >
+                                 <div class="creature-feature">
 
                                     <label for="ever_carried_ring">Ever carried the ring ? </label>
                                 
@@ -162,7 +166,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
                                 </div>
 
-                                <div >
+                                <div class="creature-feature">
 
                                     <label for="enslaved_by_sauron">Enslaved by Sauron ? </label>
                                 
@@ -170,23 +174,23 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
                                 </div>
 
-                                <div >
+                                <div class="creature-feature">
 
                                     <label for="race">Race</label>
                                     <select name="race" required>
                                         <option value="">Select race</option>
-									  <option value="elf">Elf</option>
-									  <option value="dwarf">Dwarf</option>
-									  <option value="hobbit">Hobbit</option>
-									  <option value="orc">Orc</option>
-									  <option value="human">Human</option>
-									  <option value="ghost">Ghost</option>
-									  <option value="other">Other</option>
-									</select>
+                                      <option value="elf">Elf</option>
+                                      <option value="dwarf">Dwarf</option>
+                                      <option value="hobbit">Hobbit</option>
+                                      <option value="orc">Orc</option>
+                                      <option value="human">Human</option>
+                                      <option value="ghost">Ghost</option>
+                                      <option value="other">Other</option>
+                                    </select>
 
                                 </div>
 
-                                <div id="duplicater">
+                                <div id="duplicater" class="creature-feature">
 
                                     <label for="crime_date">Crimes against Sauron </label>
 
@@ -205,7 +209,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
                                 </div>
                                 <a  id="add_crime" href="javascript:void(0);">Add crime</a>
 
-                                <div id="note">
+                                <div id="note" class="creature-feature">
 
                                     <label for="note_date">Notes </label>
 
@@ -218,15 +222,23 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
                                 </div>
                                 <a  id="add_note" href="javascript:void(0);">Add note</a>
 
-                                <div >
+                                <div class="creature-feature">
 
                                     <input type="submit"  name="create" value="submit">
 
                                 </div>
                                 
 
-                            </div>
+                        
 </form>
+</div>
+
+
+
+
+    
+</body>
+</html>
 
 
 <script>

@@ -10,13 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>Mordor</title>
 
-    <!-- Bootstrap Core CSS -->
-<!--     <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 
-    <!-- Custom CSS -->
-<!--     <link href="css/blog-home.css" rel="stylesheet"> -->
 
 
 
@@ -47,10 +43,9 @@
 
 
 	?>
-
+<div class="admin">
   
-
-    <div id="creatures">
+  <div id="creatures">
                            <table>
                                 <thead>
                                     <tr>
@@ -116,6 +111,12 @@
                         </div>
 
                         <div id="crimes"></div>
+
+
+</div>
+
+
+    
 
                         
 

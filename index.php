@@ -1,5 +1,28 @@
 <?php require_once "includes/header.php";?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mordor</title>
+
+
+
+
+
+    <link rel="stylesheet" href="css/style.css" class="">
+
+</head>
+
+<body>
+
 
 
 <?php 
@@ -68,10 +91,10 @@
 
 ?>
 
-<div class="col-md-4 col-md-offset-4">
+<div class="login">
    
-   <h4 class="bg-danger"><?php echo $session->message; ?></h4>
-   <h4 class="bg-danger"><?php echo $message; ?></h4>
+   <p><?php echo $session->message; ?></p>
+   <p><?php echo $message; ?></p>
     
     <form action="" id="login-id" method="post">
         
@@ -86,8 +109,8 @@
         
         <div class="form-group">
            
-            <input type="submit" class="btn btn-primary" name="create" value="Create creature">
-            <input type="submit" class="btn btn-primary" name="view" value="View creatures">
+            <input type="submit" class="" name="create" value="Create creature">
+            <input type="submit" class="" style="margin-left: 9%;" name="view" value="View creatures">
             
         </div>
         
@@ -95,6 +118,10 @@
     </form>
     
 </div>
+
+    
+</body>
+</html>
 
 
 

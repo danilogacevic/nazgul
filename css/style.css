@@ -1,3 +1,51 @@
 table, th, td {
    border: 1px solid black;
+   color:white;
+   background-color: cadetblue;
 }
+
+
+
+.admin {
+	    position: absolute;
+    top: 19%;
+    left: 14%;
+    text-align: center;
+   
+}
+
+#creatures {
+
+	margin-bottom: 2%;
+}
+
+.login {
+
+	position: absolute;
+    top: 19%;
+    left: 38%;
+    padding: 10px;
+    background: cadetblue;
+}
+
+.form-group {
+
+	margin-bottom: 5%;
+}
+
+.creature-feature {
+
+	margin-bottom: 1%;
+	margin-top: 1%;
+}
+
+.nazgul-form {
+
+	width:50%;
+	margin-left: 24%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: cadetblue;
+}
+
+
