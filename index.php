@@ -35,16 +35,18 @@
         
     }
 
-    if(isset($_POST['create'])){
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        if(isset($_POST['create']) && $_POST['create'] === 'add'){
         
        
         $password = clean($_POST['password']);
-    
+        $username = $_SESSION['feature'] = 'add_creature';
     
 
 // Metod to check database user
         
-    $user_found = User::verify_user($password);
+    $user_found = User::verify_user($password,$username);
 
 
         if($user_found){
@@ -53,16 +55,17 @@
             redirect("form.php");
         } else {
 
-            $message = "Your password or username is incorrect";
+            $poruka = "Your password or username is incorrect";
 
 
         }
         
         
-    } else if(isset($_POST['view'])) {
+    } else if(isset($_POST['create']) && $_POST['create'] === 'view') {
 
             $password = clean($_POST['password']);
-            $user_found = User::verify_user($password);
+            $username = $session->feature = $_SESSION['feature'] ='view_creature';
+            $user_found = User::verify_user($password,$username);
 
 
         if($user_found){
@@ -71,22 +74,24 @@
             redirect("admin/view_creatures.php");
         } else {
 
-            $message = "Your password or username is incorrect";
+            $poruka = "Your password or username is incorrect";
 
 
         }
 
 
 
+    } else {
+
+        $poruka="";
     }
 
-    else {
-        
-        $username = "";
-        $password = "";
-        $message  = "";
-        
-    }
+ 
+} else {
+    $poruka="";
+}
+
+    
 
 
 ?>
@@ -94,7 +99,7 @@
 <div class="login">
    
    <p><?php echo $session->message; ?></p>
-   <p><?php echo $message; ?></p>
+   <p><?php echo $poruka; ?></p>
     
     <form action="" id="login-id" method="post">
         
@@ -106,11 +111,21 @@
             <input type="password" class="form-control" name="password" value="">
             
         </div>
+
+       
+
+        <div class="form-group">
+            <select name="create" required>
+                        <option value="">Action</option>
+                      <option value="add">Add creature</option>
+                      <option value="view">View creatures</option>
+            </select>
+        </div>
         
         <div class="form-group">
            
-            <input type="submit" class="" name="create" value="Create creature">
-            <input type="submit" class="" style="margin-left: 9%;" name="view" value="View creatures">
+            <input type="submit" class="" value="Enter">
+            
             
         </div>
         

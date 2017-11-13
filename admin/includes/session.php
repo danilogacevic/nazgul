@@ -3,7 +3,7 @@
 class Session {
     
     private $signed_in = false;
-    private $feature;
+    public $feature;
     public $user_id;
     public $count;
     public $message='';
@@ -14,6 +14,7 @@ class Session {
         session_start();
         $this -> check_the_login();
         $this->check_message();
+       
         
      
     }
@@ -47,19 +48,15 @@ class Session {
         return $this -> signed_in;
        
     }
-
-    public function feature(){
-        
-        return $this -> feature;
        
-    }
+  
     
     public function login($user){
         
         if($user){
             
             $this -> user_id = $_SESSION['user_id'] = $user -> id;
-            $this -> feature = $_SESSION['feature'] = $user -> username;
+            $this -> feature = $_SESSION['feature'];
             $this -> signed_in = true;
             
         }
@@ -73,6 +70,7 @@ class Session {
         unset($_SESSION['feature']);
         unset($this -> user_id);
         $this -> signed_in = false;
+        
         
     }
     

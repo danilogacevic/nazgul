@@ -24,7 +24,7 @@
 
 
 
-<?php if($session -> is_signed_in() && $session ->feature() == 'view_creature'){
+<?php if($session -> is_signed_in() && $session ->feature == 'view_creature'){
 
   $session->logout();
 
@@ -34,7 +34,7 @@
   //session_destroy();
 
 } else {
-    $session->message("you clicked wrong button");
+    // $session->message("you clicked wrong button");
     $session->logout();
      redirect("../index.php");
 

@@ -10,7 +10,7 @@
 
 <?php 
 
-if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
+if($session -> is_signed_in() && $session -> feature === 'add_creature') {
 
     $creature = new Creature();
     $crime = new Crime();
@@ -99,7 +99,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
 } else {
 
-    $session->message("you clicked wrong button");
+ 
     $session->logout();
              redirect("index.php");
 
@@ -191,7 +191,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
 
                                 </div>
 
-                                <div id="duplicater" class="creature-feature">
+                                <div id="duplicater0" class="creature-feature">
 
                                     <label for="crime_date">Crimes against Sauron </label>
 
@@ -210,7 +210,7 @@ if($session -> is_signed_in() && $session -> feature() === 'add_creature') {
                                 </div>
                                 <a  id="add_crime" href="javascript:void(0);">Add crime</a>
 
-                                <div id="note" class="creature-feature">
+                                <div id="note0" class="creature-feature">
 
                                     <label for="note_date">Notes </label>
 
@@ -286,13 +286,13 @@ function hey () {
 
 
 var i = 0;
-var original = document.getElementById('duplicater');
-var original_note = document.getElementById('note');
+var j=0;
 
 
 function duplicate() {
+    var original = document.getElementById('duplicater'+ i);
     var clone = original.cloneNode(true); 
-    // clone.id = "duplicater" + ++i;
+    clone.id = "duplicater" + ++i;
     clearChildren(clone);
 
     insertAfter(clone,original);
@@ -301,8 +301,9 @@ function duplicate() {
 }
 
 function duplicate_note() {
+    var original_note = document.getElementById('note'+j);
     var clone = original_note.cloneNode(true); 
-    // clone.id = "duplicater" + ++i;
+    clone.id = "note" + ++j;
     clearChildren(clone);
 
 

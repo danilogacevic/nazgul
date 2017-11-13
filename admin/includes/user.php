@@ -13,20 +13,29 @@ class User extends Db_object {
     
   
     
-    public static function verify_user($password){
+    public static function verify_user($password,$username){
         
         global $database;
-        // $username = $database -> escape_string($username);
+        
         $password = $database -> escape_string($password);
-        $password =md5($password);
+        
         
         $sql = "SELECT * FROM " . self::$db_table . " WHERE ";
-        $sql .="password = '{$password}' ";
+        $sql .="username = '{$username}' ";
         $sql .="LIMIT 1"; 
         
         $the_result_array = self::find_by_query($sql);
         
-        return !empty($the_result_array) ? array_shift($the_result_array) : false;
+        $user = !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+        if($user && password_verify($password,$user->password)) {
+
+            return $user;
+
+        } else {
+
+            return false;
+        }
         
     }
 

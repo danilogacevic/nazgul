@@ -32,7 +32,7 @@ $conn = mysqli_connect($servername, $username, $password, "techire_h02");
 $sql = "CREATE TABLE IF NOT EXISTS users (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(30) NOT NULL, 
-password VARCHAR(40) NOT NULL,
+password VARCHAR(60) NOT NULL,
 reg_date TIMESTAMP
 )";
 
@@ -45,16 +45,19 @@ $result = mysqli_query($conn,"SELECT * FROM users");
 
 // create users for app
 
+$add_creature_password = '$2y$12$b/nXMIopg19jDg.hl21UouQdXoCF09zG3E32S82XI5OCshnHAOKrG';
+$view_creature_password = '$2y$12$cVd6TRE34yR/yoeP5SmR2.4Arq0C5nzgPhfMULtnp2Q3k9By83Kjy';
+
 if(mysqli_num_rows($result) == 0) {
 
-			$sql = "INSERT INTO users (username, password) VALUE ('add_creature','6a446225bb626a97e28b2adf116c3748')";
+			$sql = "INSERT INTO users (username, password) VALUE ('add_creature','$add_creature_password')";
 
 		if (!mysqli_query($conn,$sql) === TRUE) {
 
 		    echo "Something is wrong";
 		}
 
-		$sql = "INSERT INTO users (username,password) VALUE ('view_creature','5ed8150cd2f23d489d693d2f3050d9ba')";
+		$sql = "INSERT INTO users (username,password) VALUE ('view_creature','$view_creature_password')";
 
 		if (!mysqli_query($conn,$sql) === TRUE) {
 
